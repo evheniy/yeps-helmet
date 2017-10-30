@@ -25,24 +25,32 @@ It helps you secure your YEPS apps by setting various HTTP headers
 
     npm i -S yeps-helmet
   
-
 ## How to use
 
     const App = require('yeps');
+    
+    const error = require('yeps-error');
+    const logger = require('yeps-logger');
+    const server = require('yeps-server');
+        
     const helmet = require('yeps-helmet');
     
     const app = new App();
     
     app.all([
-        helmet();
-    ]);
-
-Or with options:
-
-    app.all([
-        helmet({...});
+        error(),
+        logger(),
+        helmet(),
     ]);
     
-See [helmet](https://github.com/helmetjs/helmet) documentation
+    server.createHttpServer(app);
+
+Or with **options**:
+
+    app.all([
+        helmet({...}),
+    ]);
+    
+See [helmet](https://github.com/helmetjs/helmet) documentation.
     
 #### [YEPS documentation](http://yeps.info/)
